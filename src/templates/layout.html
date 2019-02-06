@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}Dig Deeper CMS{% endblock %}</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1">
+        <meta name="format-detection" content="telephone=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <link rel="stylesheet" href="/assets/css/main.css">
+    </head>
+    <body>
+        <div class="container">
+            {% block body %}{% endblock %}
+        </div>
+
+        {% if loggedin == true %}
+          {% include 'partials/_foot-nav.html' %}
+        {% endif %}
+
+        <script
+            src="http://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+        <script>
+            // TODO: Jquery does the job here… replace this with Vanilla ASAP
+            $('.js-slideout').slideDown().delay(3000).slideUp();
+        </script>
+
+    </body>
+</html>

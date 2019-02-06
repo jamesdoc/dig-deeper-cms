@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<h1 class="title">Login</h1>
+
+{% if message == 'invalid' %}
+<div class="notice notice--error">
+<h1>Error</h1>
+<p>Invalid username or password.</p>
+</div>
+{% endif %}
+
+<form action="{{ path_for( 'authenticate' )}}" method="POST" class="bof-form">
+
+  <div class="bof-form__item">
+    <label class="bof-form__label">Username</label>
+    <input type="text" name="userid" class="bof-form__input"/>
+  </div>
+
+  <div class="bof-form__item">
+    <label class="bof-form__label">Password</label>
+    <input type="password" name="password" class="bof-form__input"/>
+  </div>
+
+  <input type="submit" value="Login" class="btn btn--primary" />
+</form>
+
+{% endblock %}
