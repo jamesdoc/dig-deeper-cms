@@ -33,13 +33,14 @@ class Auth
         $query->execute($param);
         if ($row=$query->fetch(PDO::FETCH_OBJ)) {
             $payload = array("userid" => $row->userid);
-            $goto = $this->router->pathFor("studies");
             $token = JWT::encode($payload, $this->secrettoken, "HS256");
             setcookie("authtoken", $token, time()+3600);  // cookie expires in one hour
-            return $response->withRedirect($goto)->withStatus(302);
+            return $response->withRedirect($this->router->pathFor("studies"))->withStatus(302);
         } else {
-            // echo json_encode("No valid user or password");
-            return $response->withRedirect($this->router->pathFor("login") . "?message=invalid")->withStatus(302);
+            // echo json_encode("Invalid username or password.");
+            global $app;
+            $app->getContainer()->flash->addMessage('message', 'Invalid username or password.');
+            return $response->withRedirect($this->router->pathFor('login'))->withStatus(302);
         }
     }
 
