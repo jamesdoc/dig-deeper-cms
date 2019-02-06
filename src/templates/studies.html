@@ -2,5 +2,81 @@
 
 {% block body %}
 
-<br/><br/>
+<h1 class="mt-4 mb-3">Studies</h1>
+
+{% if message %}
+  <div class="alert alert-success">{{ message }}</div>
+{% endif %}
+
+{% for study in studies %}
+    <p></p>{{ study.title }}</p>
+{% endfor %}
+
+
+<h2 class="mt-4 mb-3">Add a new study</h2>
+
+<form action="{{ path_for('add-study') }}" method="POST">
+    <div class="form-group">
+        <label for="author_id">author_id</label>
+        <input type="text" name="author_id" id="author_id" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="week_id">week_id</label>
+        <input type="text" name="week_id" id="week_id" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="day_no">day_no</label>
+        <input type="text" name="day_no" id="day_no" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="publish_date">publish_date</label>
+        <input type="text" name="publish_date" id="publish_date" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="title">title</label>
+        <input type="text" name="title" id="title" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="passage_ref">passage_ref</label>
+        <input type="text" name="passage_ref" id="passage_ref" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="passage_text">passage_text</label>
+        <input type="text" name="passage_text" id="passage_text" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="prayer_intro">prayer_intro</label>
+        <input type="text" name="prayer_intro" id="prayer_intro" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="body">body</label>
+        <input type="text" name="body" id="body" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="prayer_outro">prayer_outro</label>
+        <input type="text" name="prayer_outro" id="prayer_outro" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="audio_url">audio_url</label>
+        <input type="text" name="audio_url" id="audio_url" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="video_url">video_url</label>
+        <input type="text" name="video_url" id="video_url" class="form-control">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add a study</button>
+</form>
+
 {% endblock %}

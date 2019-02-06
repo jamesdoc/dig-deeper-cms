@@ -35,7 +35,7 @@ class Auth
             $payload = array("userid" => $row->userid);
             $token = JWT::encode($payload, $this->secrettoken, "HS256");
             setcookie("authtoken", $token, time()+3600);  // cookie expires in one hour
-            return $response->withRedirect($this->router->pathFor("studies"))->withStatus(302);
+            return $response->withRedirect($this->router->pathFor('studies'))->withStatus(302);
         } else {
             // echo json_encode("Invalid username or password.");
             global $app;

@@ -17,7 +17,8 @@ $app->get('/studies', function (Request $request, Response $response, array $arg
 
     return $this->view->render($response, 'studies.html', [
         'studies' => $studies,
-        'loggedin' => True
+        'loggedin' => True,
+        'message' => $this->flash->getFirstMessage('message')
     ]);
 })->setName('studies');
 
@@ -80,7 +81,7 @@ $app->get('/json', function (Request $request, Response $response, array $args) 
 })->setName('json');
     
 // Add a study
-$app->post('/study', function (Request $request, Response $response) {
+$app->post('/study', function (Request $request, Response $response) use ($app) {
     $data = $request->getParsedBody();
     
     $sql = "INSERT INTO study (author_id, week_id, day_no, publish_date, title, passage_ref, passage_text, prayer_intro, body, prayer_outro, audio_url, video_url)
@@ -102,8 +103,11 @@ $app->post('/study', function (Request $request, Response $response) {
     $stmt->bindParam("video_url", $data['video_url']);
     
     $stmt->execute();
-    
-    });
 
+    // If success...
+    $this->flash->addMessage('message', 'Successfully added.');
+    return $response->withRedirect($this->router->pathFor('studies'))->withStatus(302);
+    
+    })->setName('add-study');
 
 ?>
