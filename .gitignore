@@ -1,0 +1,13 @@
+*.log
+*.retry
+.vagrant/*
+node_modules/*
+cypress/plugins/*
+cypress/support/*
+
+src/public/assets/css/*
+src/public/assets/js/*
+src/public/assets/svg/*
+!src/public/assets/css/.keep
+!src/public/assets/js/.keep
+!src/public/assets/svg/.keep

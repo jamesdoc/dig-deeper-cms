@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="landing">
+
+  <h1 class="landing__title">
+    Dig Deeper CMS
+  </h1>
+
+  {% if loggedin == false %}
+  <div class="button-block">
+    <a href="{{ path_for('login')}}" class="btn btn--secondary btn--block">
+      Sign in
+    </a>
+  </div>
+  {% endif %}
+  
+</div>
+
+{% endblock %}
