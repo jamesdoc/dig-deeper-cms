@@ -46,7 +46,8 @@ $app->get('/json', function (Request $request, Response $response, array $args) 
             $weeks[$study->week_name] = array();
         }
         $weeks[$study->week_name][] =
-            array('publish_date' => $study->publish_date,
+            array('id' => $study->id,
+                  'publish_date' => $study->publish_date,
                   'title' => $study->title,
                   'passage_ref' => $study->passage_ref,
                   'passage_text' => $study->passage_text,
@@ -65,7 +66,7 @@ $app->get('/json', function (Request $request, Response $response, array $args) 
     }
 
     foreach ($weeks as $name => $studies) {
-        $data['data'][] = array('week' => $name, 'studies' => $studies);
+        $data['data'][] = array('week' => $name, 'days' => $studies);
     }
 
     $content = $response->getBody();
