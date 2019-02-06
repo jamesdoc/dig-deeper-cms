@@ -17,7 +17,7 @@ $container['db'] = function ($c) {
 };
 
 $container['view'] = function ($container) {
-    $view = new \Slim\Views\Twig('../templates/', [
+    $view = new \Slim\Views\Twig('templates/', [
         # we could use the caching by setting a path here, eg. ../cache
         'cache' => false
     ]);
