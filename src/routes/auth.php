@@ -7,7 +7,7 @@ require __DIR__.'/../classes/Auth.php';
 
 $app->get('/login', function (Request $request, Response $response, array $args) {
     $allgetvars = $request->getQueryParams();
-    if ($allgetvars['message'] == 'invalid') {
+    if (array_key_exists('message', $allgetvars) && $allgetvars['message'] == 'invalid') {
         return $this->view->render($response, 'login.html', ['message' => 'invalid']);
     }
     return $this->view->render($response, 'login.html');
