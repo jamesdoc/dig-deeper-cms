@@ -2,11 +2,19 @@
 
 require __DIR__.'/../vendor/autoload.php';
 
+// Start PHP session
+session_start();
+
 // Instantiate the app
 $settings = require __DIR__.'/../../cfg/settings.php';
 $app = new \Slim\App($settings);
 
 $container = $app->getContainer();
+
+// Register flash provider
+$container['flash'] = function () {
+    return new \Slim\Flash\Messages();
+};
 
 // Register dependencies
 require __DIR__ . '/../dependencies.php';
